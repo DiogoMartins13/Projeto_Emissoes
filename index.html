@@ -6,7 +6,7 @@
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
       -->
-<title>Projeto de Emiss&otilde;es</title>
+<title>Projeto de Emiss&otilde;es - Estudo das efici&ecirc;ncias isentr&oacute;picas</title>
 <meta name="generator" content="MATLAB 23.2">
 <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
 <meta name="DC.date" content="2025-01-30">
@@ -76,7 +76,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 </head>
 <body>
 <div class="content">
-<h1>Projeto de Emiss&otilde;es</h1>
+<h1>Projeto de Emiss&otilde;es - Estudo das efici&ecirc;ncias isentr&oacute;picas</h1>
 <!--introduction-->
 <p>Realizado por: &Iacute;ris Alves (105856), Carolina Martins (105872), Raquel Figueira (105896), Diogo Martins (105980), Francisco Rodrigues (106298) e Rafael Santos (106599)</p>
 <!--/introduction-->
@@ -145,7 +145,7 @@ T3s = T2*(p3/p2)^((kf-1)/kf);
     <span class="keyword">for</span> j=1:1:size
 
         T3(i,j) = T2 + (T3s - T2)./eta_c(i);
-        W(i,j) = m*(cpf*(T3(i,j)-T2));          <span class="comment">% Trababalho necess&aacute;rio para o compressor</span>
+        W(i,j) = m*(cpf*(T3(i,j)-T2));          <span class="comment">% Trabalho necess&aacute;rio para o compressor</span>
 
         p4(i,j) = p3;
 
@@ -260,7 +260,7 @@ title(<span class="string">'Efeito da Temperatura &agrave; entrada da turbina na
 </div>
 <!--
 ##### SOURCE BEGIN #####
-%% Projeto de Emissões
+%% Projeto de Emissões - Estudo das eficiências isentrópicas
 % Realizado por:
 % Íris Alves (105856),
 % Carolina Martins (105872),
@@ -318,7 +318,7 @@ for i=1:size
     for j=1:1:size
 
         T3(i,j) = T2 + (T3s - T2)./eta_c(i);    
-        W(i,j) = m*(cpf*(T3(i,j)-T2));          % Trababalho necessário para o compressor
+        W(i,j) = m*(cpf*(T3(i,j)-T2));          % Trabalho necessário para o compressor
 
         p4(i,j) = p3;
 
