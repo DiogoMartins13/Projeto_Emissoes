@@ -204,31 +204,12 @@ T3s = T2*(p3/p2)^((kf-1)/kf);
 <span class="keyword">end</span>
 </pre>
 <h2 id="4">Plots</h2>
-<pre class="codeinput">
-<span class="comment">% figure()</span>
-<span class="comment">% plot(eta_j, Thrust)</span>
-<span class="comment">% ylabel('Thrust');</span>
-<span class="comment">% xlabel('Efici&ecirc;ncia de Froude');</span>
-
-figure()
+<pre class="codeinput">figure()
 surf(eta_t,eta_c,W)
 xlabel(<span class="string">'Efici&ecirc;ncia da Turbina'</span>);
 ylabel(<span class="string">'Efici&ecirc;ncia do Compressor'</span>);
 zlabel(<span class="string">'Trabalho (J)'</span>);
 title(<span class="string">'Efeito das efici&ecirc;ncias isentr&oacute;picas no Trabalho'</span>)
-
-<span class="comment">% figure()</span>
-<span class="comment">% surf(eta_t,eta_c,Thrust)</span>
-<span class="comment">% xlabel('Efici&ecirc;ncia da Turbina');</span>
-<span class="comment">% ylabel('Efici&ecirc;ncia do Compressor');</span>
-<span class="comment">% zlabel('Thrust (N)');</span>
-<span class="comment">% title('Efeito das efici&ecirc;ncias isentr&oacute;picas no thrust')</span>
-
-<span class="comment">% figure()</span>
-<span class="comment">% surf(eta_t,eta_c,Thrust)</span>
-<span class="comment">% xlabel('Efici&ecirc;ncia da Turbina');</span>
-<span class="comment">% ylabel('Efici&ecirc;ncia do Compressor');</span>
-<span class="comment">% zlabel('Thrust');</span>
 
 figure()
 surf(eta_t,eta_c,eta_thermal)
@@ -269,6 +250,7 @@ figure()
 plot(T4,m_NOX)
 xlabel(<span class="string">'Temperatura &agrave; entrada da Turbina (K)'</span>);
 ylabel(<span class="string">'Massa de NOx (kg/s)'</span>);
+title(<span class="string">'Efeito da Temperatura &agrave; entrada da turbina na produ&ccedil;&atilde;o de NOx'</span>)
 </pre>
 <img vspace="5" hspace="5" src="Emissoes_01.png" alt=""> <img vspace="5" hspace="5" src="Emissoes_02.png" alt=""> <img vspace="5" hspace="5" src="Emissoes_03.png" alt=""> <img vspace="5" hspace="5" src="Emissoes_04.png" alt=""> <img vspace="5" hspace="5" src="Emissoes_05.png" alt=""> <img vspace="5" hspace="5" src="Emissoes_06.png" alt=""> <img vspace="5" hspace="5" src="Emissoes_07.png" alt=""> <p class="footer">
 <br>
@@ -397,10 +379,6 @@ end
 
 %% Plots
 
-% figure()
-% plot(eta_j, Thrust)
-% ylabel('Thrust');
-% xlabel('Eficiência de Froude');
 
 figure()
 surf(eta_t,eta_c,W)
@@ -408,19 +386,6 @@ xlabel('Eficiência da Turbina');
 ylabel('Eficiência do Compressor');
 zlabel('Trabalho (J)');
 title('Efeito das eficiências isentrópicas no Trabalho')
-
-% figure()
-% surf(eta_t,eta_c,Thrust)
-% xlabel('Eficiência da Turbina');
-% ylabel('Eficiência do Compressor');
-% zlabel('Thrust (N)');
-% title('Efeito das eficiências isentrópicas no thrust')
-
-% figure()
-% surf(eta_t,eta_c,Thrust)
-% xlabel('Eficiência da Turbina');
-% ylabel('Eficiência do Compressor');
-% zlabel('Thrust');
 
 figure()
 surf(eta_t,eta_c,eta_thermal)
@@ -461,6 +426,7 @@ figure()
 plot(T4,m_NOX)
 xlabel('Temperatura à entrada da Turbina (K)');
 ylabel('Massa de NOx (kg/s)');
+title('Efeito da Temperatura à entrada da turbina na produção de NOx')
 
 
 ##### SOURCE END #####
