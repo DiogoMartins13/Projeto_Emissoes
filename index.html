@@ -9,7 +9,7 @@ To make changes, update the MATLAB code and republish this document.
 <title>Projeto de Emiss&otilde;es - Estudo das efici&ecirc;ncias isentr&oacute;picas</title>
 <meta name="generator" content="MATLAB 23.2">
 <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
-<meta name="DC.date" content="2025-01-30">
+<meta name="DC.date" content="2025-01-31">
 <meta name="DC.source" content="Emissoes.m">
 <style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
@@ -131,7 +131,7 @@ H_ker = 43.260*10^6;  <span class="comment">% Calorific value of kerosene</span>
 Thrust = 18000;       <span class="comment">% Thrust fixado</span>
 </pre>
 <h2 id="3">C&aacute;lculos</h2>
-<pre class="codeinput">p2 = pa + (den*V0^2)/2;     <span class="comment">% Aproxima&ccedil;&atilde;o de que p2 &eacute; igual &agrave; press&atilde;o de total em a</span>
+<pre class="codeinput">p2 = pa + (den*V0^2)/2;     <span class="comment">% Aproxima&ccedil;&atilde;o de que p2 &eacute; igual &agrave; press&atilde;o total em a</span>
 T2 = Ta;                    <span class="comment">% Aproxima&ccedil;&atilde;o de que T2 = Ta</span>
 pe = pa;                    <span class="comment">% Aproxima&ccedil;&atilde;o de que a press&atilde;o de sa&iacute;da &eacute; igual &agrave; press&atilde;o a</span>
 p3 = Rp*p2;
@@ -205,17 +205,44 @@ T3s = T2*(p3/p2)^((kf-1)/kf);
 </pre>
 <h2 id="4">Plots</h2>
 <pre class="codeinput">figure()
-surf(eta_t,eta_c,W)
+surf(eta_t,eta_c,m_fuel)
 xlabel(<span class="string">'Efici&ecirc;ncia da Turbina'</span>);
 ylabel(<span class="string">'Efici&ecirc;ncia do Compressor'</span>);
-zlabel(<span class="string">'Trabalho (J)'</span>);
-title(<span class="string">'Efeito das efici&ecirc;ncias isentr&oacute;picas no Trabalho'</span>)
+zlabel(<span class="string">'Consumo de combust&iacute;vel (kg/s)'</span>);
+title(<span class="string">'Efeito das efici&ecirc;ncias isentr&oacute;picas no consumo de combust&iacute;vel'</span>)
+
+figure()
+surf(eta_t,eta_c,m_poluentes)
+xlabel(<span class="string">'Efici&ecirc;ncia da Turbina'</span>);
+ylabel(<span class="string">'Efici&ecirc;ncia do Compressor'</span>);
+zlabel(<span class="string">'Massa de Poluentes (kg/s)'</span>);
+title(<span class="string">'Efeito das efici&ecirc;ncias isentr&oacute;picas na massa de Poluentes'</span>)
+
+figure()
+surf(eta_t,eta_c,m_NOX)
+xlabel(<span class="string">'Efici&ecirc;ncia da Turbina'</span>);
+ylabel(<span class="string">'Efici&ecirc;ncia do Compressor'</span>);
+zlabel(<span class="string">'Massa de NOx (kg/s)'</span>);
+title(<span class="string">'Efeito das efici&ecirc;ncias isentr&oacute;picas na produ&ccedil;&atilde;o de NOx'</span>)
+
+figure()
+surf(eta_t,eta_c,T4)
+xlabel(<span class="string">'Efici&ecirc;ncia da Turbina'</span>);
+ylabel(<span class="string">'Efici&ecirc;ncia do Compressor'</span>);
+zlabel(<span class="string">'T4 (K)'</span>);
+title(<span class="string">'Efeito das efici&ecirc;ncias isentr&oacute;picas na Temperatura T_4'</span>)
+
+figure()
+plot(T4,m_NOX)
+xlabel(<span class="string">'Temperatura &agrave; entrada da Turbina (K)'</span>);
+ylabel(<span class="string">'Massa de NOx (kg/s)'</span>);
+title(<span class="string">'Efeito da Temperatura &agrave; entrada da turbina na produ&ccedil;&atilde;o de NOx'</span>)
 
 figure()
 surf(eta_t,eta_c,eta_thermal)
 xlabel(<span class="string">'Efici&ecirc;ncia da Turbina'</span>);
 ylabel(<span class="string">'Efici&ecirc;ncia do Compressor'</span>);
-zlabel(<span class="string">'Efici&ecirc;ncia de T&eacute;rmica'</span>);
+zlabel(<span class="string">'Efici&ecirc;ncia T&eacute;rmica'</span>);
 title(<span class="string">'Efeito das efici&ecirc;ncias isentr&oacute;picas na Efici&ecirc;ncia T&eacute;rmica'</span>)
 
 figure()
@@ -226,6 +253,15 @@ zlabel(<span class="string">'Efici&ecirc;ncia Total'</span>);
 title(<span class="string">'Efeito das efici&ecirc;ncias isentr&oacute;picas na Efici&ecirc;ncia Total'</span>)
 
 figure()
+surf(eta_t,eta_c,W)
+xlabel(<span class="string">'Efici&ecirc;ncia da Turbina'</span>);
+ylabel(<span class="string">'Efici&ecirc;ncia do Compressor'</span>);
+zlabel(<span class="string">'Trabalho (J)'</span>);
+title(<span class="string">'Efeito das efici&ecirc;ncias isentr&oacute;picas no Trabalho'</span>)
+
+<span class="comment">% Gr&aacute;ficos n&atilde;o inclu&iacute;dos no projeto</span>
+
+figure()
 surf(eta_t,eta_c,eta_j)
 xlabel(<span class="string">'Efici&ecirc;ncia da Turbina'</span>);
 ylabel(<span class="string">'Efici&ecirc;ncia do Compressor'</span>);
@@ -233,26 +269,13 @@ zlabel(<span class="string">'Efici&ecirc;ncia de Froude'</span>);
 title(<span class="string">'Efeito das efici&ecirc;ncias isentr&oacute;picas na Efici&ecirc;ncia de Froude'</span>)
 
 figure()
-surf(eta_t,eta_c,m_poluentes)
+surf(eta_t,eta_c,T5)
 xlabel(<span class="string">'Efici&ecirc;ncia da Turbina'</span>);
 ylabel(<span class="string">'Efici&ecirc;ncia do Compressor'</span>);
-zlabel(<span class="string">'Massa de Poluentes (kg/s)'</span>);
-title(<span class="string">'Efeito das efici&ecirc;ncias isentr&oacute;picas na massa de Poluentes'</span>)
-
-figure()
-surf(eta_t,eta_c,m_fuel)
-xlabel(<span class="string">'Efici&ecirc;ncia da Turbina'</span>);
-ylabel(<span class="string">'Efici&ecirc;ncia do Compressor'</span>);
-zlabel(<span class="string">'Consumo de combust&iacute;vel (kg/s)'</span>);
-title(<span class="string">'Efeito das efici&ecirc;ncias isentr&oacute;picas no consumo de combust&iacute;vel'</span>)
-
-figure()
-plot(T4,m_NOX)
-xlabel(<span class="string">'Temperatura &agrave; entrada da Turbina (K)'</span>);
-ylabel(<span class="string">'Massa de NOx (kg/s)'</span>);
-title(<span class="string">'Efeito da Temperatura &agrave; entrada da turbina na produ&ccedil;&atilde;o de NOx'</span>)
+zlabel(<span class="string">'T5 (K)'</span>);
+title(<span class="string">'Efeito das efici&ecirc;ncias isentr&oacute;picas na Temperatura T_5'</span>)
 </pre>
-<img vspace="5" hspace="5" src="Emissoes_01.png" alt=""> <img vspace="5" hspace="5" src="Emissoes_02.png" alt=""> <img vspace="5" hspace="5" src="Emissoes_03.png" alt=""> <img vspace="5" hspace="5" src="Emissoes_04.png" alt=""> <img vspace="5" hspace="5" src="Emissoes_05.png" alt=""> <img vspace="5" hspace="5" src="Emissoes_06.png" alt=""> <img vspace="5" hspace="5" src="Emissoes_07.png" alt=""> <p class="footer">
+<img vspace="5" hspace="5" src="Emissoes_01.png" alt=""> <img vspace="5" hspace="5" src="Emissoes_02.png" alt=""> <img vspace="5" hspace="5" src="Emissoes_03.png" alt=""> <img vspace="5" hspace="5" src="Emissoes_04.png" alt=""> <img vspace="5" hspace="5" src="Emissoes_05.png" alt=""> <img vspace="5" hspace="5" src="Emissoes_06.png" alt=""> <img vspace="5" hspace="5" src="Emissoes_07.png" alt=""> <img vspace="5" hspace="5" src="Emissoes_08.png" alt=""> <img vspace="5" hspace="5" src="Emissoes_09.png" alt=""> <img vspace="5" hspace="5" src="Emissoes_10.png" alt=""> <p class="footer">
 <br>
 <a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2023b</a>
 <br>
@@ -304,7 +327,7 @@ Thrust = 18000;       % Thrust fixado
 
 %% Cálculos
 
-p2 = pa + (den*V0^2)/2;     % Aproximação de que p2 é igual à pressão de total em a
+p2 = pa + (den*V0^2)/2;     % Aproximação de que p2 é igual à pressão total em a
 T2 = Ta;                    % Aproximação de que T2 = Ta
 pe = pa;                    % Aproximação de que a pressão de saída é igual à pressão a
 p3 = Rp*p2;                 
@@ -379,19 +402,45 @@ end
 
 %% Plots
 
-
 figure()
-surf(eta_t,eta_c,W)
+surf(eta_t,eta_c,m_fuel)
 xlabel('Eficiência da Turbina');
 ylabel('Eficiência do Compressor');
-zlabel('Trabalho (J)');
-title('Efeito das eficiências isentrópicas no Trabalho')
+zlabel('Consumo de combustível (kg/s)');
+title('Efeito das eficiências isentrópicas no consumo de combustível')
+
+figure()
+surf(eta_t,eta_c,m_poluentes)
+xlabel('Eficiência da Turbina');
+ylabel('Eficiência do Compressor');
+zlabel('Massa de Poluentes (kg/s)');
+title('Efeito das eficiências isentrópicas na massa de Poluentes')
+
+figure()
+surf(eta_t,eta_c,m_NOX)
+xlabel('Eficiência da Turbina');
+ylabel('Eficiência do Compressor');
+zlabel('Massa de NOx (kg/s)');
+title('Efeito das eficiências isentrópicas na produção de NOx')
+
+figure()
+surf(eta_t,eta_c,T4)
+xlabel('Eficiência da Turbina');
+ylabel('Eficiência do Compressor');
+zlabel('T4 (K)');
+title('Efeito das eficiências isentrópicas na Temperatura T_4')
+
+figure()
+plot(T4,m_NOX)
+xlabel('Temperatura à entrada da Turbina (K)');
+ylabel('Massa de NOx (kg/s)');
+title('Efeito da Temperatura à entrada da turbina na produção de NOx')
 
 figure()
 surf(eta_t,eta_c,eta_thermal)
 xlabel('Eficiência da Turbina');
 ylabel('Eficiência do Compressor');
-zlabel('Eficiência de Térmica');
+zlabel('Eficiência Térmica');
 title('Efeito das eficiências isentrópicas na Eficiência Térmica')
 
 figure()
@@ -402,6 +451,15 @@ zlabel('Eficiência Total');
 title('Efeito das eficiências isentrópicas na Eficiência Total')
 
 figure()
+surf(eta_t,eta_c,W)
+xlabel('Eficiência da Turbina');
+ylabel('Eficiência do Compressor');
+zlabel('Trabalho (J)');
+title('Efeito das eficiências isentrópicas no Trabalho')
+
+% Gráficos não incluídos no projeto
+
+figure()
 surf(eta_t,eta_c,eta_j)
 xlabel('Eficiência da Turbina');
 ylabel('Eficiência do Compressor');
@@ -409,24 +467,11 @@ zlabel('Eficiência de Froude');
 title('Efeito das eficiências isentrópicas na Eficiência de Froude')
 
 figure()
-surf(eta_t,eta_c,m_poluentes)
+surf(eta_t,eta_c,T5)
 xlabel('Eficiência da Turbina');
 ylabel('Eficiência do Compressor');
-zlabel('Massa de Poluentes (kg/s)');
-title('Efeito das eficiências isentrópicas na massa de Poluentes')
-
-figure()
-surf(eta_t,eta_c,m_fuel)
-xlabel('Eficiência da Turbina');
-ylabel('Eficiência do Compressor');
-zlabel('Consumo de combustível (kg/s)');
-title('Efeito das eficiências isentrópicas no consumo de combustível')
-
-figure()
-plot(T4,m_NOX)
-xlabel('Temperatura à entrada da Turbina (K)');
-ylabel('Massa de NOx (kg/s)');
-title('Efeito da Temperatura à entrada da turbina na produção de NOx')
+zlabel('T5 (K)');
+title('Efeito das eficiências isentrópicas na Temperatura T_5')
 
 
 ##### SOURCE END #####
